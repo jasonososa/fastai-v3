@@ -8,8 +8,6 @@ from io import BytesIO
 from fastai import *
 from fastai.vision import *
 
-torch.load(map_location="cpu")
-
 export_file_url = 'https://drive.google.com/uc?export=download&id=17ButfQ68Zd4i7lFq54roaELMrMV8s6bc'
 export_file_name = 'export.pkl'
 
@@ -29,7 +27,7 @@ async def download_file(url, dest):
 
 async def setup_learner():
     await download_file(export_file_url, path/export_file_name)
-    learn = load_learner(path, export_file_name)
+    learn = torch.load(path, export_file_name, map_location="cpu")
     return learn
 
 loop = asyncio.get_event_loop()
