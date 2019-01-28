@@ -8,7 +8,7 @@ from io import BytesIO
 from fastai import *
 from fastai.vision import *
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=17ButfQ68Zd4i7lFq54roaELMrMV8s6bc'
+export_file_url = 'https://drive.google.com/uc?id=13fZK9evk6bOA7Jz4ZoVAEcdCa0nSJ7-z&export=download'
 export_file_name = 'export.pkl'
 
 classes = ['class-1', 'class-2', 'class-3']
@@ -27,7 +27,7 @@ async def download_file(url, dest):
 
 async def setup_learner():
     await download_file(export_file_url, path/export_file_name)
-    learn = load_learner(path, export_file_name, cpu=True)
+    learn = load_learner(path, export_file_name)
     return learn
 
 loop = asyncio.get_event_loop()
