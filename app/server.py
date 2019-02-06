@@ -52,11 +52,11 @@ async def analyze(request):
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
     output_class = []
-    if prediction=='Dolls_less_than 250' :
+    if str(prediction)=='Dolls_less_than 250' :
         output_class.append('Value of the doll is less than $250')
-    elif prediction=='Dolls_between_250_and_1000' :
+    elif str(prediction)=='Dolls_between_250_and_1000' :
         output_class.append('Value of the doll is between $250 and $1,000')
-    elif prediction=='Dolls_more_than_1000' :
+    elif str(prediction)=='Dolls_more_than_1000' :
         output_class.append('Value of the doll is more than $1,000')
     return JSONResponse({'result': str(output_class)})
 
