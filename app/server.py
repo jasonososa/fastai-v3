@@ -11,7 +11,7 @@ from fastai.vision import *
 export_file_url = 'https://drive.google.com/uc?export=download&id=1w8F8rb8Ty4R_BkZEhiHs7BpqRyhXm874'
 export_file_name = 'export.pkl'
 
-classes = ['class-1', 'class-2', 'class-3']
+classes = ['Doll value is less than $250', 'Doll value is between $250 and $1,0000', 'Doll value is more than $1,000']
 path = Path(__file__).parent
 
 app = Starlette()
