@@ -58,7 +58,7 @@ async def analyze(request):
         output_class.append(classes[1])
     elif prediction==predicted_classes[2] :
         output_class.append(classes[2])
-    return JSONResponse({'result': str(output_class)})
+    return JSONResponse({'result': str(output_class[0)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app=app, host='0.0.0.0', port=5042)
