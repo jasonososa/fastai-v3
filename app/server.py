@@ -11,7 +11,12 @@ from fastai.vision import *
 export_file_url = 'https://drive.google.com/uc?export=download&id=1w8F8rb8Ty4R_BkZEhiHs7BpqRyhXm874'
 export_file_name = 'export.pkl'
 
-classes = ['Doll value is less than $250', 'Doll value is between $250 and $1,0000', 'Doll value is more than $1,000']
+# Actual classes predicted by the model
+predicted_classes = ['Dolls_less_than 250','Dolls_between_250_and_1000','Dolls_more_than_1000']
+# Desire output classs
+classes = ['Value of the doll is less than $250', 'Value of the doll is between $250 and $1,0000',
+           'Value of the doll is more than $1,000']
+
 path = Path(__file__).parent
 
 app = Starlette()
@@ -46,7 +51,14 @@ async def analyze(request):
     img_bytes = await (data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
-    return JSONResponse({'result': str(prediction)})
+    output_class = []
+    if prediction==predicted_classes[0] :
+        output_class.append(classes[0])
+    elif prediction==predicted_classes[1] :
+        output_class.append(classes[1])
+    elif prediction==predicted_classes[2] :
+        output_class.append(classes[2])
+    return JSONResponse({'result': str(output_class)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app=app, host='0.0.0.0', port=5042)
