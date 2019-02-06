@@ -58,7 +58,7 @@ async def analyze(request):
         output_class.append('Value of the doll is between $250 and $1,000')
     elif str(prediction)=='Dolls_more_than_1000' :
         output_class.append('Value of the doll is more than $1,000')
-    return JSONResponse({'result': output_class})
+    return JSONResponse({output_class})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app=app, host='0.0.0.0', port=5042)
